@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime, timedelta
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://news-mcp-server-acx6.onrender.com"
 
 def get_top_headlines(query: str) -> str:
     response = requests.get(f"{BASE_URL}/headlines", params={"query": query})
