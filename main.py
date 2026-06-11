@@ -25,6 +25,13 @@ def search_news(query: str, days_back: int = 7):
     response = requests.get(url)
     return response.json()
 
+@app.post("/search-post")
+def search_news_post(request: NewsRequest):
+    from_date = (datetime.now() - timedelta(days=request.days_back)).strftime("%Y-%m-%d")
+    url = f"https://newsapi.org/v2/everything?q={request.query}&from={from_date}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
+    response = requests.get(url)
+    return response.json()
+
 @app.get("/category")
 def get_category(category: str):
     valid = ["business", "technology", "science", "health", "sports", "entertainment"]
@@ -34,7 +41,7 @@ def get_category(category: str):
     response = requests.get(url)
     return response.json()
 
-@app.post("/search")
+@app.post("/search-post")
 def search_news_post(request: NewsRequest):
     from_date = (datetime.now() - timedelta(days=request.days_back)).strftime("%Y-%m-%d")
     url = f"https://newsapi.org/v2/everything?q={request.query}&from={from_date}&language=en&sortBy=publishedAt&apiKey={NEWS_API_KEY}"
