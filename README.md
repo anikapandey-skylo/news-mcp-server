@@ -42,3 +42,9 @@ Add to `claude_desktop_config.json`:
   }
 }
 ```
+
+## Tool Schemas
+
+get_company_news(company: str) -> str
+search_recent_news(query: str, days_back: int = 7) -> str  
+get_category_news(category: str) -> str
